@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+   - 0.8
+
+
+before_script:
+  - npm install mocha -g
+  - npm install grunt -g
+  - npm install
+
+
+script: "grunt"
+
+
+notifications:
+  email:
+    - ryan.ramage@gmail.com
