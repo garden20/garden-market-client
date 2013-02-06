@@ -20,13 +20,13 @@
   "dependencies": {
     "url": "~0.7.9",
     "async": "~0.2.2",
-    "request": "~2.12.0",
+    "request": "~2.12.0"
   },
   "jam": {
     "dependencies": {
-      "async": null,
-      "url": null,
-      "reqwest" : null
+      "async": "0.2.3",
+      "url": "0.6.7-kanso.1",
+      "reqwest" : "0.4.5"
     }
   },
   "devDependencies": {
