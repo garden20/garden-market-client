@@ -1,7 +1,7 @@
 {
   "name": "garden-market-client",
   "version": "0.0.1",
-  "description": "A small api to interact with a garden-market",
+  "description": "Small client api to interact with a garden market.",
   "main": "garden-market-client.js",
   "scripts": {
     "test": "mocha test/test.js"
