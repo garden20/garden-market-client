@@ -16,6 +16,41 @@ app.getAppDetails = function(app_url, callback) {
 };
 
 
+app.listApps = function(market_url, options, callback) {
+    if (!callback) {
+        callback = options;
+        options = {};
+    }
+
+    var full_url = url.resolve(market_url + '/',  '_db/_design/market/_list/app_versions/apps'),
+        parsed_url = url.parse(full_url);
+
+    parsed_url.query = {};
+    if (options.limit) parsed_url.query.limit = options.limit;
+    if (options.apps) {
+        var query = [];
+        options.apps.forEach(function(app){
+            query.push([app]);
+        });
+        parsed_url.query.keys = query;
+    }
+
+
+    handleRequest(url.format(parsed_url), { jsonp: true },  function(err, data){
+        if (err) return callback(err);
+        var apps = Object.keys(data);
+        async.map(apps, function(app, cb){
+            cb(null, {
+                name : app,
+                version : data[app],
+                url : url.resolve(market_url + '/', 'details/' + app)
+            });
+        }, callback);
+    });
+
+};
+
+
 function handleRequest(url, options, callback) {
     if (!callback) {
         callback = options;
@@ -59,7 +94,8 @@ function handleRequestNode(r_url, options, callback) {
 
 if (request.test) return app;
 else return {
-    getAppDetails : app.getAppDetails
+    getAppDetails : app.getAppDetails,
+    listApps : app.listApps
 };
 
 }));
