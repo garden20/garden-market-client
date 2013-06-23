@@ -1,6 +1,6 @@
 {
   "name": "garden-market-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Small client api to interact with a garden market.",
   "main": "garden-market-client.js",
   "scripts": {
